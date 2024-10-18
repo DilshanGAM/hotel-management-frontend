@@ -7,7 +7,6 @@ export default function AdminPage() {
         <div>
 
           <Link className="mr-12" to={"/admin/rooms"}>Rooms</Link>
-          
           <Link to={"/admin/booking"}>Booking</Link>
 
         </div>
