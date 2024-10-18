@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+  padding: 0px;
+  margin: 0px;
+}
