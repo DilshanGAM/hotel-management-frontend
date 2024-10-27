@@ -16,13 +16,16 @@ export default function LoginPage(){
     ).then(
       (res)=>{
 
-      console.log(res.data)
       localStorage.setItem("token",res.data.token)
+      
+      console.log(res.data.type)
 
-      const token = localStorage.getItem("token")
-
-
-      console.log(token)
+      if(res.data.user.type == "customer"){
+        window.location.href = "/"
+      }else if(res.data.user.type == "admin"){
+        window.location.href = "/admin"
+      }
+      
 
     }).catch((err)=>{
 
