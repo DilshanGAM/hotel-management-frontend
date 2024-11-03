@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function CategoriesPage() {
 
@@ -21,13 +22,17 @@ export default function CategoriesPage() {
   )
 
   function deleteItem(name){
-    setIsModelOpen(true)
-    // axios.delete(import.meta.env.VITE_BACKEND_URL+"/api/category/"+name).then((res)=>{
-
+    
+    // axios.delete(import.meta.env.VITE_BACKEND_URL+"/api/category/"+name , {
+    //   headers: {
+    //     Authorization: "Bearer "+localStorage.getItem("token")
+    //   }
+    // }).then((res)=>{
+    //   toast.success("Category deleted successfully")
     //   setCategoriesIsLoaded(false)
 
     // })
-
+    
 
   }
 
