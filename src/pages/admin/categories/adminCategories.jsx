@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 export default function AdminCategories() {
   
@@ -110,9 +110,11 @@ export default function AdminCategories() {
                 )}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                <button onClick={() => {}} className="text-blue-500 mr-2">
-                  <FaEdit /> {/* Edit icon */}
-                </button>
+                <Link className="text-blue-500 mr-2"
+                    to={"/admin/update-category"} 
+                    state={category}>
+                  <FaEdit /> 
+                </Link>
 
                 <button onClick={() => {handleDelete(category.name)}} className="text-red-500">
                   <FaTrash /> {/* Delete icon */}
