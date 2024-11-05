@@ -64,7 +64,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="w-[80%] max-h-[100vh] overflow-y-scroll   bg-blue-900">
+      <div className="w-[80%] max-h-[100vh] overflow-y-scroll   bg-red-900">
 
         <Routes path="/*">
           <Route path="/bookings" element={<AdminBooking
