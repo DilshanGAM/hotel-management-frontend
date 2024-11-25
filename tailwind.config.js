@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        adminTextHover: "#2275fc",
+        adminText: "#111111",
+      },
+    },
   },
   plugins: [],
 }
