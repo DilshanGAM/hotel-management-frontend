@@ -6,6 +6,8 @@ import { FaTrash, FaExchangeAlt, FaToggleOn, FaToggleOff } from "react-icons/fa"
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   if (token == null) {
     window.location.href = "/login";
@@ -13,13 +15,19 @@ export default function AdminUsers() {
 
   const fetchUsers = () => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/api/users/all`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/users/all`,    
+      {
+        page : page,
+        pageSize : 5
+      },       
+      {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
         setUsers(res.data.users);
+        setTotalPages(res.data.pagination.totalPages);
       })
       .catch((err) => {
         console.error(err);
@@ -29,7 +37,7 @@ export default function AdminUsers() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [page]);
 
   const handleDelete = (email) => {
     if (confirm("Are you sure you want to delete this user?")) {
@@ -159,6 +167,19 @@ export default function AdminUsers() {
             ))}
           </tbody>
         </table>
+        <div className="w-full flex justify-center items-center">
+          {
+            Array.from({length : totalPages}).map((item,index)=>{
+              return(
+                <button className={`bg-blue-500 mx-[10px] w-[20px] h-[20px] flex text-center justify-center items-center text-white ${page==(index+1)&&" border border-black"}`} onClick={()=>{
+                  setPage(index+1)
+                }}>
+                  {index+1}
+                </button>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   );
